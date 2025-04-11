@@ -4,7 +4,6 @@ ServerEvents.tags('item', (e) => {
   e.add('c:storage_blocks/fluix', 'ae2:fluix_block');
   e.add('c:storage_blocks/charged_redstone', 'appflux:charged_redstone_block');
 
-  e.add('curios:curio', ['simplemagnets:basicmagnet', 'simplemagnets:advancedmagnet']);
   e.add('almostunified:hide', ['artifacts:eternal_steak', 'artifacts:everlasting_beef']);
 
   e.remove('c:storage_blocks/silicon', 'extendedae:silicon_block');
@@ -17,6 +16,8 @@ ServerEvents.tags('item', (e) => {
   e.add('c:seeds/eggplant', 'dumplings_delight:eggplant_seeds');
   e.add('c:crops/garlic', 'dumplings_delight:garlic');
   e.add('c:crops/green_onion', 'dumplings_delight:greenonion');
+
+  e.add('actuallyadditions:coffee_beans', 'rusticdelight:roasted_coffee_beans');
 
   e.remove('c:crops/garlic', 'dumplings_delight:garlic_clove');
   e.remove('c:foods/garlic', 'dumplings_delight:garlic_clove');
@@ -41,9 +42,32 @@ ServerEvents.tags('item', (e) => {
   ]);
 
   // Curios
-  e.add('curios:curio', 'integratedterminals:terminal_storage_portable');
-  e.add('curios:body', 'mekanism:jetpack');
-  e.add('curios:body', 'mekanism:jetpack_armored');
+  e.add('curios:curio', [
+    'simplemagnets:basicmagnet',
+    'simplemagnets:advancedmagnet',
+    'integratedterminals:terminal_storage_portable',
+    'occultism:storage_remote',
+    'artifacts:whoopee_cushion',
+  ]);
+  e.add('curios:body', ['mekanism:jetpack', 'mekanism:jetpack_armored']);
+  e.add('curios:charm', ['reliquary:fortune_coin']);
+
+  // let curioToBody = [
+  //   'relics:midnight_robe',
+  //   'relics:elytra_booster',
+  //   'reliquified_twilight_forest:scaled_cloak',
+  //   'reliquified_ars_nouveau:cloak_of_concealment',
+  // ];
+
+  // curioToBody.forEach((id) => {
+  //   e.add('curios:body', id);
+  //   e.remove('curios:back', id);
+  // });
+
+  // e.add('curios:magic_trinket', /^alshanex_familiars:.*_trinket$/);
+  // e.add('curios:magic_curio', /^alshanex_familiars:.*_curio$/);
+
+  e.remove('curios:charm', ['phantoms_utilities:sleep_charm']);
 
   // Chisel Reborn
   Ingredient.of('@chisel').itemIds.forEach((id) => {
@@ -73,7 +97,7 @@ ServerEvents.tags('item', (e) => {
   ]);
 
   // Wooden Tier Storage
-  e.add('craftoria:storage/wooden', ['#c:chests/wooden', '#c:barrels/wooden',]);
+  e.add('craftoria:storage/wooden', ['#c:chests/wooden', '#c:barrels/wooden']);
 
   // Some tag fixes
   e.add('minecraft:swords', ['wstweaks:blaze_blade', 'wstweaks:lava_blade', 'industrialforegoing:infinity_hammer']);
@@ -87,6 +111,13 @@ ServerEvents.tags('item', (e) => {
   e.add('minecraft:enchantable/trident', ['#craftoria:tridents']);
   e.add('minecraft:enchantable/vanishing', ['#craftoria:tridents']);
   e.add('minecraft:enchantable/durability', ['#craftoria:tridents']).remove('industrialforegoing:infinity_trident');
+
+  e.remove('plonk:unplaceable', ['plonk:placed_items']);
+
+  e.add('industrialization_overdrive:multi_processing_array_blacklist', ['modern_industrialization:budding_incubator']);
+
+  e.add('craftoria:grass', ['#biomeswevegone:grass', 'minecraft:short_grass', 'minecraft:seagrass']);
+  e.add('craftoria:tall_grass', ['#biomeswevegone:grass/tall', 'minecraft:tall_grass']);
 });
 
 ServerEvents.tags('block', (e) => {
@@ -107,7 +138,7 @@ ServerEvents.tags('block', (e) => {
   e.add('ae2:blacklisted/spatial', ['justdirethings:time_crystal_budding_block']);
   e.add('mekanism:cardboard_blacklist', ['justdirethings:time_crystal_budding_block']);
 
-  global.dyeColors.forEach((color) => {
+  Color.DYE.forEach((color) => {
     e.add('c:glass_blocks', `#chipped:${color}_stained_glass`);
     e.add('c:glass_panes', `#chipped:${color}_stained_glass_pane`);
   });
@@ -152,9 +183,23 @@ ServerEvents.tags('fluid', (e) => {
 });
 
 ServerEvents.tags('entity_type', (e) => {
+  e.add('craftoria:mob_blacklist', [
+    'artifacts:mimic',
+    'minecraft:warden',
+    '#c:bosses',
+    /^occultism:(?!possessed).*$/,
+    '#neoforge:bosses',
+  ]);
+
   e.add('ftbchunks:entity_interact_whitelist', ['minecraft:villager', 'minecraft:wandering_trader']);
 
-  e.add('mob_grinding_utils:no_swab', ['artifacts:mimic', 'minecraft:warden', '#c:bosses', /^occultism:(?!possessed).*$/, '#neoforge:bosses']);
+  e.add('mob_grinding_utils:no_swab', '#craftoria:mob_blacklist');
 
   e.add('industrialforegoing:mob_crusher_blacklist', ['#c:bosses', '#neoforge:bosses']);
+
+  e.add('industrialforegoing:mob_duplicator_blacklist', '#craftoria:mob_blacklist');
+});
+
+ServerEvents.tags('enchantment', (e) => {
+  e.remove('minecraft:non_treasure', ['apothic_enchanting:boon_of_the_earth']);
 });
