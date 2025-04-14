@@ -28,10 +28,10 @@ global.infCells = [
   { id: 'source', type: 'source' },
 ];
 
-StartupEvents.registry('item', (e) => {
+StartupEvents.registry('item', e => {
   /**
-   * @param {String} id
-   * @param {String} type
+   * @param {string} id
+   * @param {string} type
    */
   let createInfCell = (id, type) => {
     let strippedId = id.includes(':') ? id.split(':')[1] : id;
@@ -74,5 +74,5 @@ StartupEvents.registry('item', (e) => {
     .displayName('Ritual: Imprisonment of the Warden')
     .ritualTooltip('A ritual to imprison the Warden in an Infinity Cell, granting you infinite warden souls');
 
-  global.infCells.forEach((cell) => createInfCell(cell.id, cell.type));
+  global.infCells.forEach(cell => createInfCell(cell.id, cell.type));
 });
