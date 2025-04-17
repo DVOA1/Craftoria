@@ -32,6 +32,16 @@ ServerEvents.tags('item', e => {
     /^industrialforegoing:infinity_.*/,
 
     'shrink:shrink_bottle',
+
+    /^craftoria:infinity_.*/,
+
+    /^sophisticatedstorageinmotion.*/,
+
+    'supplementaries:sack',
+    'supplementaries:safe',
+    '#supplementaries:presents',
+    '#supplementaries:trapped_presents',
+    'supplementaries:jar',
   ];
 
   /**
@@ -39,7 +49,6 @@ ServerEvents.tags('item', e => {
    * @type {$Ingredient_[]}
    */
   const replicator_2_blacklist = [
-    /_bucket$/,
     /storage_cell/,
     /fe_.*_cell/,
     /portable_.*_cell/,
@@ -47,7 +56,7 @@ ServerEvents.tags('item', e => {
     'ae2:wireless_crafting_terminal',
     'megacells:bulk_item_cell',
     'megacells:radioactive_chemical_cell',
-    /^enderdrives:ender_disk_.*/,
+    /^enderdrives:.*_disk/,
 
     /^pneumaticcraft:.*_(tank|chest)$/,
     /^pneumaticcraft:.*drone/,
@@ -152,19 +161,7 @@ ServerEvents.tags('item', e => {
 
     'framedblocks:framed_tank',
 
-    'supplementaries:sack',
-    'supplementaries:safe',
-    '#supplementaries:presents',
-    '#supplementaries:trapped_presents',
-    'supplementaries:jar',
-
     'occultism:storage_controller_stabilized',
-
-    /^.*creative./,
-
-    /^craftoria:infinity_.*/,
-
-    /^sophisticatedstorageinmotion:_.*/
   ].concat(replicatorBlacklist);
 
   /**
@@ -172,6 +169,8 @@ ServerEvents.tags('item', e => {
    * @type {$Ingredient_[]}
    */
   const replicator_1_blacklist = [
+    /_bucket$/,
+
     // These make no sense to replicate, as they rely on having NBT data, which Replicator Mk I doesn't support, and I don't want to risk them causing issues.
     'tankstorage:tank_link',
     'bankstorage:bank_link',
