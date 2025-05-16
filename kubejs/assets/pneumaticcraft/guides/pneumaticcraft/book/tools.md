@@ -7,4 +7,6 @@ navigation:
 
 # Tools
 
+These are various handheld items - tools and weapons - which serve a useful purpose.
+
 <SubPages />

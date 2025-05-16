@@ -1,4 +1,4 @@
-// Priority: 998
+// priority: 998
 /**
  * This script is used to unify items from different mods.
  * It will replace items from the #c tag with the first mod(defined in modPriority) that has the item.
@@ -42,31 +42,31 @@ ServerEvents.tags('item', e => {
 
   for (let [material, types] in materials) {
     switch (material) {
-      case 'metals':
-        metals.forEach(metal => {
-          types.forEach(type => {
-            tags.push(`c:${type}/${metal}`);
-            if (type === 'raw_materials') tags.push(`c:storage_blocks/raw_${metal}`);
-          });
+    case 'metals':
+      metals.forEach(metal => {
+        types.forEach(type => {
+          tags.push(`c:${type}/${metal}`);
+          if (type === 'raw_materials') tags.push(`c:storage_blocks/raw_${metal}`);
         });
-        break;
-      case 'gems':
-        gems.forEach(gem => {
-          types.forEach(type => {
-            tags.push(`c:${type}/${gem}`);
-          });
+      });
+      break;
+    case 'gems':
+      gems.forEach(gem => {
+        types.forEach(type => {
+          tags.push(`c:${type}/${gem}`);
         });
-        break;
-      case 'misc':
-        misc.forEach(misc => {
-          types.forEach(type => {
-            tags.push(`c:${type}/${misc}`);
-          });
+      });
+      break;
+    case 'misc':
+      misc.forEach(misc => {
+        types.forEach(type => {
+          tags.push(`c:${type}/${misc}`);
         });
-        break;
-      default:
-        logError(`Unknown material: ${material}`);
-        break;
+      });
+      break;
+    default:
+      logError(`Unknown material: ${material}`);
+      break;
     }
   }
 
@@ -119,31 +119,31 @@ ServerEvents.recipes(e => {
 
   Object.entries(materials).forEach(([material, types]) => {
     switch (material) {
-      case 'metals':
-        metals.forEach(metal => {
-          types.forEach(type => {
-            tryReplace(`#c:${type}/${metal}`);
-            if (type === 'raw_materials') tryReplace(`#c:storage_blocks/raw_${metal}`);
-          });
+    case 'metals':
+      metals.forEach(metal => {
+        types.forEach(type => {
+          tryReplace(`#c:${type}/${metal}`);
+          if (type === 'raw_materials') tryReplace(`#c:storage_blocks/raw_${metal}`);
         });
-        break;
-      case 'gems':
-        gems.forEach(gem => {
-          types.forEach(type => {
-            tryReplace(`#c:${type}/${gem}`);
-          });
+      });
+      break;
+    case 'gems':
+      gems.forEach(gem => {
+        types.forEach(type => {
+          tryReplace(`#c:${type}/${gem}`);
         });
-        break;
-      case 'misc':
-        misc.forEach(misc => {
-          types.forEach(type => {
-            tryReplace(`#c:${type}/${misc}`);
-          });
+      });
+      break;
+    case 'misc':
+      misc.forEach(misc => {
+        types.forEach(type => {
+          tryReplace(`#c:${type}/${misc}`);
         });
-        break;
-      default:
-        logDebug(`Unknown material: ${material}`);
-        break;
+      });
+      break;
+    default:
+      logDebug(`Unknown material: ${material}`);
+      break;
     }
   });
 
@@ -233,4 +233,37 @@ ServerEvents.recipes(e => {
   );
 
   ae.inscriber('inscribe', 'ae2:ender_dust', '#c:ender_pearls', null, null, 'ae2:inscriber/ender_dust');
+
+  e.forEachRecipe({ type: 'pneumaticcraft:thermo_plant' }, kubeRecipe => {
+    let recipe = JSON.parse(kubeRecipe.json.toString());
+    let modifiedRecipe = false;
+
+    if (recipe?.outputs?.fluid_output?.id == 'pneumaticcraft:lubricant') {
+      recipe.outputs.fluid_output.id = 'modern_industrialization:lubricant';
+      modifiedRecipe = true;
+    }
+
+    if (!modifiedRecipe) return;
+
+    logDebug(`Recipe: ${kubeRecipe.getId()}`, `JSON: ${kubeRecipe.json.toString()}`);
+    e.custom(recipe).id(kubeRecipe.getId());
+  });
+
+  e.forEachRecipe({ type: 'pneumaticcraft:amadron' }, kubeRecipe => {
+    let recipe = JSON.parse(kubeRecipe.json.toString());
+    let modifiedRecipe = false;
+
+    if (recipe?.output?.resource?.id == 'pneumaticcraft:lubricant') {
+      recipe.output.resource.id = 'modern_industrialization:lubricant';
+      modifiedRecipe = true;
+    } else if (recipe?.input?.resource?.id == 'pneumaticcraft:lubricant') {
+      recipe.input.resource.id = 'modern_industrialization:lubricant';
+      modifiedRecipe = true;
+    }
+
+    if (!modifiedRecipe) return;
+
+    logDebug(`Recipe: ${kubeRecipe.getId()}`, `JSON: ${kubeRecipe.json.toString()}`);
+    e.custom(recipe).id(kubeRecipe.getId());
+  });
 });

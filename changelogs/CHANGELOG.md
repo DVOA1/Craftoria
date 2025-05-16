@@ -1,3 +1,113 @@
+## Craftoria | v1.20.3
+
+_NeoForge Loader 21.1.169_ | _[Mod Updates](https://github.com/TeamAOF/Craftoria/blob/main/changelogs/changelog_mods_1.20.3.md)_ | _[Modlist](https://github.com/TeamAOF/Craftoria/blob/main/changelogs/modlist_1.20.3.md)_
+
+### Changes/Improvements ⭐
+
+* Added Rose Quartz recipes in meka machines ``Phantom``
+* Made meka-tana & bow enchantable ``Phantom``
+
+### Added Mods ✅
+
+* [FTB Ultimine](https://www.curseforge.com/minecraft/mc-mods/ftb-ultimine-forge)
+
+### Removed Mods ❌
+
+* [QoM: Excavein](https://www.curseforge.com/minecraft/mc-mods/excavein) (too many bugs)
+
+### Bug Fixes 🪲
+
+* Fixed an issue where opening the Portable QIO while it's in the Curios slot wasnt possible.
+* Fixed an issue where lapis would be deleted when mined.
+* Fixed an issue where tape drives would crash your game.
+---
+
+## Craftoria | v1.20.2
+
+_NeoForge Loader 21.1.168_ | _[Mod Updates](https://github.com/TeamAOF/Craftoria/blob/main/changelogs/changelog_mods_1.20.2.md)_ | _[Modlist](https://github.com/TeamAOF/Craftoria/blob/main/changelogs/modlist_1.20.2.md)_
+
+### Changes/Improvements ⭐
+
+* Added quantum tier MI hatches ``Phantom``
+* Make (MD)machine extender work with (EI)machine chainers ``Phantom``
+* Added more linkable blocks to machine chainer ``Phantom``
+* Added oxidizing recipes for osmium ``Phantom``
+* Removed sawing torch recipe ``Phantom``
+* Removed cooldowns for excavein ``Phantom``
+* Added clarification tooltips for MI Nuke ``Phantom``
+* Lowered FoodExhaustionMultiplier for excavein from 2.0 to 1.2 ``Phantom``
+* Swapped to the default(linear) quest progression mode, flexible causes more trouble than it's worth ``Phantom``
+* Made the budding incubator into a batch crafter ``Phantom``
+* Added update available button to main menu ``DVOA1``
+
+### Added Mods ✅
+
+  * [Ars Controle](https://www.curseforge.com/minecraft/mc-mods/ars-controle)
+  * [Mekanism Curios](https://www.curseforge.com/minecraft/mc-mods/mekanism-curios)
+  * [Tempad](https://www.curseforge.com/minecraft/mc-mods/tempad)
+
+### Removed Mods ❌
+
+  * [Create: Filters Anywhere](https://www.curseforge.com/minecraft/mc-mods/create-filters-anywhere) (bug when shutting down server, getting stuck on thread)
+---
+
+## Craftoria | v1.20.1
+
+_NeoForge Loader 21.1.160_ | _[Mod Updates](https://github.com/TeamAOF/Craftoria/blob/main/changelogs/changelog_mods_1.20.1.md)_ | _[Modlist](https://github.com/TeamAOF/Craftoria/blob/main/changelogs/modlist_1.20.1.md)_
+
+### Bug Fixes 🪲
+
+* Fixed skills not loading properly.
+* Potentially fix a crash when villagers interact with doors.
+
+### Removed Mods ❌
+
+  * [Couplings Revamped](https://www.curseforge.com/minecraft/mc-mods/couplings-revamped)
+---
+
+## Craftoria | v1.20.0
+
+_NeoForge Loader 21.1.160_ | _[Mod Updates](https://github.com/TeamAOF/Craftoria/blob/main/changelogs/changelog_mods_1.20.0.md)_ | _[Modlist](https://github.com/TeamAOF/Craftoria/blob/main/changelogs/modlist_1.20.0.md)_
+
+### Changes/Improvements ⭐
+
+* Buffed Budding Incubator recipes ``Phantom``
+* Added ars technica xp gems -> xp fluid recipes to MI + ID ``Phantom``
+* Corrected MI armor HUD positions overlapping with others ``Phantom``
+* Added uraninite conversion to uranium with chemical reactor ``DVOA1``
+* Changed default keybind of team chat toggle from Y to U ``AK``
+* Changed default keybind of showcase item from SHIFT + X to SHIFT + T ``AK``
+* Grouped modded keybinds into categories ``Phantom``
+* Lowered max mekanism upgrades from 32 to 16 ``Phantom``
+* Added waystones to cardboard box blacklist ``Phantom``
+
+### Bug Fixes 🪲
+
+* Fixed Sophisticated Storage Upgrade unification not loading on first world join.
+* Fixed sophisticated hopper upgrade not being craftable.
+* Fixed crashes with cataclysm summoner spells.
+* Fixed soph storage input output and io recipes.
+* Fixed an issue where showcased items wouldnt show icon if chat not open.
+* Fixed large configurable chest item output overlay not being visible.
+
+### Added Mods ✅
+
+  * [Apotheosis x Iron's Spellbooks Compat](https://www.curseforge.com/minecraft/mc-mods/apotheosis-x-irons-spellbooks-compat)
+  * [Couplings Revamped](https://www.curseforge.com/minecraft/mc-mods/couplings-revamped)
+  * [Craftoria Core](https://www.curseforge.com/minecraft/mc-mods/craftoria-core)
+  * [Iron's Spells 'n Spellbooks Dynamic Skill Trees](https://www.curseforge.com/minecraft/mc-mods/irons-spells-n-spellbooks-dynamic-skill-trees)
+  * [KeyBindJS](https://www.curseforge.com/minecraft/mc-mods/keybindjs)
+  * [QoM: Excavein](https://www.curseforge.com/minecraft/mc-mods/excavein)
+
+### Removed Mods ❌
+
+  * [Create: Trading Floor](https://www.curseforge.com/minecraft/mc-mods/create-trading-floor) (Performance Issues)
+  * [FTB Ultimine (Forge)](https://www.curseforge.com/minecraft/mc-mods/ftb-ultimine-forge) (Replaced)
+  * [My Nether's Delight](https://www.curseforge.com/minecraft/mc-mods/my-nethers-delight) (Too Outdated)
+  * [Storage No Poof](https://www.curseforge.com/minecraft/mc-mods/storage-no-poof) (Not needed anymore)
+  * [Unofficial Iron's Spells 'n Spellbooks Skill Tree](https://www.curseforge.com/minecraft/mc-mods/unofficial-irons-spells-n-spellbooks-skill-tree) (Replaced)
+---
+
 ## Craftoria | v1.19.0
 
 _NeoForge Loader 21.1.147_ | _[Mod Updates](https://github.com/TeamAOF/Craftoria/blob/main/changelogs/changelog_mods_1.19.0.md)_ | _[Modlist](https://github.com/TeamAOF/Craftoria/blob/main/changelogs/modlist_1.19.0.md)_

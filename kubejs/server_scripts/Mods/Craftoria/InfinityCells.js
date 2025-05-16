@@ -2,7 +2,7 @@ ServerEvents.recipes(e => {
   const ars = ArsNouveauHelper(e);
   const ae = AE2Helper(e);
 
-  e.shapeless('occultism:trinity_gem[entity_data={id:"occultism: possessed_warden"}]', [
+  e.shapeless('occultism:trinity_gem[entity_data={id:"occultism:possessed_warden"}]', [
     'occultism:trinity_gem',
     'occultism:spawn_egg/possessed_warden',
   ]);
@@ -64,15 +64,15 @@ ServerEvents.recipes(e => {
     '4x justdirethings:experienceholder',
     '4x sophisticatedbackpacks:xp_pump_upgrade',
     '8x actuallyadditions:xp_solidifier',
-    'mekanism_extras:cosmic_fluid_tank[mekanism:fluids={fluid_tanks:[{amount:262144000,id:"justdirethings: xp_fluid_source"}]}]',
+    'mekanism_extras:cosmic_fluid_tank[mekanism:fluids={fluid_tanks:[{amount:262144000,id:"justdirethings:xp_fluid_source"}]}]',
   ]);
 
   ae.crystalAssembler('craftoria:infinity_cell_housing', [
     '32x #c:ingots/replica',
     '16x bigger_ae2:digital_singularity_cell_component',
     '16x advanced_ae:quantum_alloy_plate',
-    '16x modern_industrialization:aluminum_tank',
-    // '16x modern_industrialization:aluminum_barrel', // Disabled due MI barrels not stacking
+    '16x modern_industrialization:stainless_steel_tank',
+    // '16x modern_industrialization:stainless_steel_barrel', // Disabled due MI barrels not stacking
     '4x mekanism_extras:cosmic_fluid_tank',
     '4x mekanism_extras:cosmic_bin',
   ]);

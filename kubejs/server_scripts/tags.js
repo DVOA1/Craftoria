@@ -5,6 +5,7 @@ ServerEvents.tags('item', e => {
   e.add('c:storage_blocks/charged_redstone', 'appflux:charged_redstone_block');
 
   e.add('almostunified:hide', ['artifacts:eternal_steak', 'artifacts:everlasting_beef']);
+  e.add('ars_controle:ritual_blacklist', ['ars_nouveau:ritual_flight']);
 
   e.remove('c:storage_blocks/silicon', 'extendedae:silicon_block');
   e.removeAll('apothic_enchanting:boon_drops');
@@ -12,7 +13,7 @@ ServerEvents.tags('item', e => {
   // Crops & Seeds
   e.add('c:seeds/cabbage', ['farmersdelight:cabbage_seeds', 'dumplings_delight:chinese_cabbage_seeds']);
   e.add('c:seeds/tomato', 'farmersdelight:tomato_seeds');
-  e.add('c:seeds/rice', 'sushigocrafting:rice_seeds');
+  e.add('c:seeds/rice', 'farmersdelight:rice');
   e.add('c:seeds/eggplant', 'dumplings_delight:eggplant_seeds');
   e.add('c:crops/garlic', 'dumplings_delight:garlic');
   e.add('c:crops/green_onion', 'dumplings_delight:greenonion');
@@ -40,34 +41,6 @@ ServerEvents.tags('item', e => {
     'modern_industrialization:basic_machine_hull',
     'mekanism:ultimate_tier_installer',
   ]);
-
-  // Curios
-  e.add('curios:curio', [
-    'simplemagnets:basicmagnet',
-    'simplemagnets:advancedmagnet',
-    'integratedterminals:terminal_storage_portable',
-    'occultism:storage_remote',
-    'artifacts:whoopee_cushion',
-  ]);
-  e.add('curios:body', ['mekanism:jetpack', 'mekanism:jetpack_armored']);
-  e.add('curios:charm', ['reliquary:fortune_coin']);
-
-  // let curioToBody = [
-  //   'relics:midnight_robe',
-  //   'relics:elytra_booster',
-  //   'reliquified_twilight_forest:scaled_cloak',
-  //   'reliquified_ars_nouveau:cloak_of_concealment',
-  // ];
-
-  // curioToBody.forEach((id) => {
-  //   e.add('curios:body', id);
-  //   e.remove('curios:back', id);
-  // });
-
-  // e.add('curios:magic_trinket', /^alshanex_familiars:.*_trinket$/);
-  // e.add('curios:magic_curio', /^alshanex_familiars:.*_curio$/);
-
-  e.remove('curios:charm', ['phantoms_utilities:sleep_charm']);
 
   // Chisel Reborn
   Ingredient.of('@chisel').itemIds.forEach(id => {
@@ -109,17 +82,33 @@ ServerEvents.tags('item', e => {
   e.add('craftoria:storage/wooden', ['#c:chests/wooden', '#c:barrels/wooden']);
 
   // Some tag fixes
-  e.add('minecraft:swords', ['wstweaks:blaze_blade', 'wstweaks:lava_blade', 'industrialforegoing:infinity_hammer']);
+  e.add('minecraft:swords', [
+    'wstweaks:blaze_blade',
+    'wstweaks:lava_blade',
+    'industrialforegoing:infinity_hammer',
+    'mekaweapons:meka_tana',
+  ]);
   e.add('minecraft:pickaxes', ['industrialforegoing:infinity_drill']);
   e.add('minecraft:shovels', ['industrialforegoing:infinity_drill']);
   e.add('minecraft:axes', ['industrialforegoing:infinity_saw']);
-  e.add('craftoria:tridents', ['industrialforegoing:infinity_trident']);
-  e.add('c:tools/melee_weapon', ['#craftoria:tridents']);
-  e.add('c:tools/ranged_weapon', ['#craftoria:tridents']);
-  e.add('c:tools/spear', ['#craftoria:tridents']);
-  e.add('minecraft:enchantable/trident', ['#craftoria:tridents']);
-  e.add('minecraft:enchantable/vanishing', ['#craftoria:tridents']);
-  e.add('minecraft:enchantable/durability', ['#craftoria:tridents']).remove('industrialforegoing:infinity_trident');
+  e.add('c:tools/bow', ['mekaweapons:meka_bow']);
+  e.add('c:tools/melee_weapon', ['industrialforegoing:infinity_trident', 'mekaweapons:meka_tana']);
+  e.add('c:tools/ranged_weapon', ['industrialforegoing:infinity_trident', 'mekaweapons:meka_bow']);
+  e.add('c:tools/spear', 'industrialforegoing:infinity_trident');
+
+  /**
+   * @param {string[]} tags
+   * @param {$Ingredient_|$Ingredient_[]} item
+   */
+  let addToEnchantable = (tags, item) => {
+    tags.forEach(tag => {
+      e.add(`minecraft:enchantable/${tag}`, item);
+    });
+  };
+
+  addToEnchantable(['bow', 'vanishing'], 'mekaweapons:meka_bow');
+  addToEnchantable(['mining_loot', 'vanishing', 'mining'], 'mekanism:meka_tool');
+  addToEnchantable(['trident', 'vanishing'], 'industrialforegoing:infinity_trident');
 
   e.remove('plonk:unplaceable', ['plonk:placed_items']);
 
@@ -145,7 +134,7 @@ ServerEvents.tags('block', e => {
   ]);
 
   e.add('ae2:blacklisted/spatial', ['justdirethings:time_crystal_budding_block']);
-  e.add('mekanism:cardboard_blacklist', ['justdirethings:time_crystal_budding_block']);
+  e.add('mekanism:cardboard_blacklist', ['justdirethings:time_crystal_budding_block', '@waystones']);
 
   Color.DYE.forEach(color => {
     e.add('c:glass_blocks', `#chipped:${color}_stained_glass`);
@@ -167,15 +156,26 @@ ServerEvents.tags('block', e => {
     'hostilenetworks:sim_chamber',
     'hostilenetworks:loot_fabricator',
     'ars_additions:ender_source_jar',
+    'animal_pen:aquarium_block',
+    'moderndynamics:machine_extender',
   ]);
 
-  e.add('minecraft:mineable/axe', ['mekanism:cardboard_box']);
+  e.add('minecraft:mineable/axe', ['mekanism:cardboard_box', '#animal_pen:animal_pens']);
 
   e.add('minecraft:storage_blocks/quartz', 'minecraft:quartz_block');
 
   e.remove('c:storage_blocks/silicon', 'extendedae:silicon_block');
 
-  e.add('sereneseasons:greenhouse_glass', ['#minecraft:glass_blocks', 'actuallyadditions:greenhouse_glass']);
+  e.add('sereneseasons:greenhouse_glass', ['#minecraft:glass_blocks', /glass$/]);
+
+  e.add('extended_industrialization:machine_chainer/linkable', [
+    '@functionalstorage',
+    'entangled:block',
+    'tesseract:tesseract',
+    'tankstorage:tank_dock',
+    'bankstorage:bank_dock',
+    'moderndynamics:machine_extender',
+  ]);
 
   // Block tags for quest usage
   e.add('craftoria:ae2_buddings', /^ae2:.*_budding_quartz/);
@@ -196,13 +196,11 @@ ServerEvents.tags('entity_type', e => {
 
   e.add('ftbchunks:entity_interact_whitelist', ['minecraft:villager', 'minecraft:wandering_trader']);
 
+  e.add('apothic_spawners:blacklisted_from_spawners', ['#craftoria:mob_blacklist']);
+
   e.add('mob_grinding_utils:no_swab', '#craftoria:mob_blacklist');
 
   e.add('industrialforegoing:mob_crusher_blacklist', ['#c:bosses', '#neoforge:bosses']);
 
   e.add('industrialforegoing:mob_duplicator_blacklist', '#craftoria:mob_blacklist');
-});
-
-ServerEvents.tags('enchantment', e => {
-  e.remove('minecraft:non_treasure', ['apothic_enchanting:boon_of_the_earth']);
 });

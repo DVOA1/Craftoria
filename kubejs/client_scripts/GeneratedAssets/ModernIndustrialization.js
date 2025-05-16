@@ -1,7 +1,16 @@
 ClientEvents.generateAssets('after_mods', e => {
-  global.customMIMachines.forEach(machine => {
-    /** @type {{id: string, mod: Special.Mod, casing: string}} */
-    let { id, mod, overlay } = machine;
+  let sounds = {
+    bending_machine: ['mi_sound_addon:packer'],
+    alloy_smelter: ['mi_sound_addon:furnace'],
+    canning_machine: ['mekanism:tile/compressor'],
+    composter: ['mekanism:tile/pigment_mixer'],
+    brewery: ['mi_sound_addon:distillery'],
+  };
+
+  // Machine states and models
+  for (let [id, machine] of Object.entries(global.customMIMachines)) {
+    /** @type {{mod: Special.Mod, casing: string,overlay: string}} */
+    let { mod, overlay, casing } = machine;
     if (!mod) mod = 'modern_industrialization';
 
     e.blockState(`${mod}:${id}`, bs => {
@@ -9,7 +18,7 @@ ClientEvents.generateAssets('after_mods', e => {
     });
 
     let modelJson = {
-      casing: machine.casing || 'lv',
+      casing: casing || 'lv',
       default_overlays: machine.default_overlays || {
         fluid_auto: 'modern_industrialization:block/overlays/fluid_auto',
         item_auto: 'modern_industrialization:block/overlays/item_auto',
@@ -30,21 +39,11 @@ ClientEvents.generateAssets('after_mods', e => {
     e.itemModel(`${mod}:${id}`, im => {
       im.parent(`${mod}:block/${id}`);
     });
-  });
 
-  let sounds = {
-    bending_machine: ['mi_sound_addon:packer'],
-    alloy_smelter: ['mi_sound_addon:furnace'],
-    canning_machine: ['mekanism:tile/compressor'],
-    composter: ['mekanism:tile/pigment_mixer'],
-    brewery: ['mi_sound_addon:distillery'],
-  };
-
-  global.customMIMachines.forEach(machine => {
     if (machine.sound) {
       sounds[machine.id] = [machine.sound];
     }
-  });
+  }
 
   Object.keys(sounds).forEach(key => {
     sounds[key] = {
@@ -54,4 +53,49 @@ ClientEvents.generateAssets('after_mods', e => {
   });
 
   e.json('mi_sound_addon:sounds', sounds);
+
+  // Hatch states and models
+  for (let [id, hatch] of Object.entries(global.customMIHatches)) {
+    let mod = 'modern_industrialization';
+    let { casing, types } = hatch;
+    if (!casing || !types) {
+      console.error(`Error registering '${id}' hatch: Missing required properties.`);
+      continue;
+    }
+
+    let modelJson = {
+      casing: casing,
+      default_overlays: {
+        fluid_auto: 'modern_industrialization:block/overlays/fluid_auto',
+        item_auto: 'modern_industrialization:block/overlays/item_auto',
+        output: 'modern_industrialization:block/overlays/output',
+      },
+      loader: 'modern_industrialization:machine',
+    };
+
+    Object.keys(types).forEach(type => {
+      let hatchModel = modelJson;
+      hatchModel.default_overlays.front = `${mod}:block/machines/hatch_${type}/overlay_front`;
+      hatchModel.default_overlays.side = `${mod}:block/machines/hatch_${type}/overlay_side`;
+
+      ['input', 'output'].forEach(io => {
+        e.blockState(`${mod}:${id}_${type}_${io}_hatch`, bs => {
+          bs.simpleVariant('', `${mod}:block/${id}_${type}_${io}_hatch`);
+        });
+        e.itemModel(`${mod}:${id}_${type}_${io}_hatch`, im => {
+          im.parent(`${mod}:block/${id}_${type}_${io}_hatch`);
+        });
+
+        e.json(`${mod}:models/block/${id}_${type}_${io}_hatch`, hatchModel);
+      });
+    });
+  }
+
+  // Casing models
+  for (let [id, block] of Object.entries(global.customMICasings)) {
+    e.json(`modern_industrialization:models/machine_casing/${id}`, {
+      loader: 'modern_industrialization:use_block_model',
+      block: block,
+    });
+  }
 });

@@ -1,5 +1,5 @@
 // priority: 2147483647
-// Global variables used in server_scripts
+// Global variables/functions used in server_scripts
 
 const $NeighborNotifyEvent = Java.loadClass('net.neoforged.neoforge.event.level.BlockEvent$NeighborNotifyEvent');
 const $InteractionHand = Java.loadClass('net.minecraft.world.InteractionHand');
@@ -64,27 +64,24 @@ const getServerLevel = levelAccessor => {
  * @param {string} input The input item
  */
 const _makeRecipeID = (mod, type, output, input) => {
-  output = output.split(':')[1].replace(' ', '_');
-  input = input.split(':')[1].replace(' ', '_');
-
-  if (type.includes(':')) type = type.split(':')[1];
-
-  //console.info(`ID: craftoria:${mod}/${type}/${output}_from_${input}`);
-  return `craftoria:${mod}/${type}/${output}_from_${input}`;
+  output = ID.path(output).replace(' ', '_');
+  input = ID.path(input).replace(' ', '_');
+  logDebug(`ID: ${`craftoria:${mod}/${ID.path(type)}/${output}_from_${input}`}`);
+  return `craftoria:${mod}/${ID.path(type)}/${output}_from_${input}`;
 };
 
 const debugToInt = () => {
   switch (debug) {
-    case 'error':
-      return 1;
-    case 'warn':
-      return 2;
-    case 'info':
-      return 3;
-    case 'debug':
-      return 4;
-    default:
-      return 0;
+  case 'error':
+    return 1;
+  case 'warn':
+    return 2;
+  case 'info':
+    return 3;
+  case 'debug':
+    return 4;
+  default:
+    return 0;
   }
 };
 
