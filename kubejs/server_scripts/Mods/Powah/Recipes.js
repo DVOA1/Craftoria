@@ -1,5 +1,5 @@
 ServerEvents.recipes(e => {
-  let energizing = e.recipes.powah.energizing;
+  let { energizing } = e.recipes.powah;
 
   const reactors = [
     { id: 'reactor_starter', capacitor: 'capacitor_basic_tiny', previous: 'dielectric_casing' },
@@ -20,7 +20,6 @@ ServerEvents.recipes(e => {
     }).id(`powah:crafting/${id}`);
   });
 
-  // prettier-ignore
   const solarPanels = [
     { output: 'powah:solar_panel_starter', input: 'powah:photoelectric_pane', circuit: 'mekanism:basic_control_circuit', capacitor: 'powah:capacitor_basic', energy: 10000 },
     { output: 'powah:solar_panel_basic', input: 'powah:solar_panel_starter', circuit: 'mekanism:advanced_control_circuit', capacitor: 'powah:capacitor_basic_large', energy: 100000 },

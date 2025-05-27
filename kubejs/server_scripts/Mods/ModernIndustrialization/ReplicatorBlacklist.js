@@ -24,6 +24,9 @@ ServerEvents.tags('item', e => {
 
     'gag:time_sand_pouch',
 
+    'animal_pen:animal_cage',
+    'animal_pen:water_animal_container',
+
     /^sophisticated(storage|backpacks):.*(shulker|barrel|chest|backpack)/,
     '@sophisticatedstorageinmotion',
 
@@ -134,6 +137,8 @@ ServerEvents.tags('item', e => {
     'framedblocks:framed_tank',
 
     'replication:matter_tank',
+
+    'xycraft_machines:foil'
   ].concat(replicatorBlacklist);
 
   /**

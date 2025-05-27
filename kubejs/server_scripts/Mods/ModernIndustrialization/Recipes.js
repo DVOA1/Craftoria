@@ -3,7 +3,6 @@
 // //////////////////////
 
 ServerEvents.recipes(e => {
-  // prettier-ignore
   const { assembler, macerator, compressor, cutting_machine, electrolyzer, chemical_reactor, oil_drilling_rig } = e.recipes.modern_industrialization;
 
   macerator(2, 100).itemOut('4x mekanism:dust_obsidian').itemIn('#c:obsidians/normal').id('craftoria:mi/macerator/obsidian_dust');
@@ -19,7 +18,21 @@ ServerEvents.recipes(e => {
     .itemOut('2x actuallyadditions:black_quartz')
     .itemIn('#c:ores/black_quartz')
     .id('craftoria:mi/macerator/ores/black_quartz');
-  macerator(2, 100).itemOut('3x create:raw_zinc').itemIn('#c:ores/zinc').id('craftoria:mi/macerator/ores/raw_zinc');
+  macerator(2, 100)
+    .itemOut('3x create:raw_zinc')
+    .itemIn('#c:ores/zinc')
+    .id('craftoria:mi/macerator/ores/raw_zinc');
+
+  macerator(2, 100)
+    .itemOut('3x xycraft_world:raw_aluminum')
+    .itemIn('#c:ores/aluminum')
+    .id('craftoria:mi/macerator/ores/raw_aluminum');
+
+  macerator(2, 100)
+    .itemOut('modern_industrialization:aluminum_dust')
+    .itemOut('modern_industrialization:aluminum_dust', 0.5)
+    .itemIn('#c:raw_materials/aluminum')
+    .id('craftoria:mi/macerator/ores/aluminum_dust');
 
   e.replaceInput(
     { output: 'industrialization_overdrive:multi_processing_array' },
@@ -131,24 +144,6 @@ ServerEvents.recipes(e => {
     .itemIn('64x modern_industrialization:plasma_turbine')
     .itemIn('4x modern_industrialization:quantum_upgrade')
     .id('craftoria:mi/assembler/large_plasma_turbine');
-
-  assembler(16, 200)
-    .itemOut('mi_tweaks:batch_budding_incubator')
-    .itemIn('16x ae2:growth_accelerator')
-    .itemIn('4x modern_industrialization:electronic_circuit')
-    .itemIn('modern_industrialization:large_pump')
-    .itemIn('modern_industrialization:advanced_machine_hull')
-    .id('craftoria:mi/assembler/budding_incubator');
-
-  e.shapeless('mi_tweaks:batch_budding_incubator', 'modern_industrialization:budding_incubator');
-
-  assembler(16, 200) // TODO: different recipe?
-    .itemOut('mi_tweaks:batch_ooze_lab')
-    .itemIn('8x justdirethings:gooblock_tier4')
-    .itemIn('4x modern_industrialization:electronic_circuit')
-    .itemIn('modern_industrialization:large_pump')
-    .itemIn('modern_industrialization:advanced_machine_hull')
-    .id('craftoria:mi/assembler/ooze_lab');
 
   e.shaped('modern_industrialization:quantum_fluid_input_hatch', ['T', 'H'], {
     T: 'modern_industrialization:quantum_tank',

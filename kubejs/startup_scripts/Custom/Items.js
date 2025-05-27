@@ -13,7 +13,8 @@ StartupEvents.registry('item', e => {
     .tag('modern_industrialization:forge_hammer_tools')
     .rarity('Common')
     .maxDamage(60)
-    .unstackable();
+    .unstackable()
+    .parentModel('minecraft:item/handheld');
 
   e.create('craftoria:ice_essence').displayName('§bEssence of Ice').tooltip('Dropped by the Apothic Lich in the Trial of Awaken gateway.');
   e.create('craftoria:fire_essence')
@@ -43,6 +44,15 @@ StartupEvents.registry('item', e => {
     .food(food => {
       food.nutrition(3).saturation(1).eatSeconds(3);
     });
+
+  // Electric screwdriver - Used for autobuilding MI multiblocks
+  e.create('craftoria:terminal')
+    .displayName('Terminal')
+    .rarity('Rare')
+    .unstackable();
+
+  // Dev Items
+  e.create('craftoria:multiblock_generator').unstackable(); // Used for generating KubeJS code for MI multiblocks.
 });
 
 ItemEvents.modification(event => {
@@ -56,8 +66,8 @@ ItemEvents.modification(event => {
   pelletsEdible.forEach(pellet => {
     event.modify(pellet, item => {
       item.food = {
-        nutrition: 1000,
-        saturation: 1000,
+        nutrition: 1,
+        saturation: 0,
         eatSeconds: 2,
         canAlwaysEat: true,
       };
