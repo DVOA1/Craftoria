@@ -26,11 +26,11 @@ $MODPACK_NAME = "Craftoria"
 $CLIENT_NAME = "Craftoria"
 
 # Version Of The Modpack
-$MODPACK_VERSION = "1.20.3"
+$MODPACK_VERSION = "1.21.1"
 
 # Last Version Of The Modpack
 # Needed For Changelog Parsing
-$LAST_MODPACK_VERSION = "1.20.2"
+$LAST_MODPACK_VERSION = "1.21.0"
 
 # Which modloader the modpack uses
 # Can be "forge" or "fabric"
@@ -99,7 +99,7 @@ $CONFIGS_TO_REMOVE_FROM_CLIENT_FILES = @(
 	)
 
 # Accepts directories
-$FOLDERS_TO_REMOVE_FROM_CLIENT_FILES = @("local/ftbutilities", "local/ftbchunks/data", "local/ftbultimine", "local/ftbultimine-client.snbt")
+$FOLDERS_TO_REMOVE_FROM_CLIENT_FILES = @("local/ftbutilities", "local/ftbchunks/data", "local/ftbultimine", "local/ftbultimine-client.snbt", "shaderpacks/ComplementaryUnbound_r5.5.1 + EuphoriaPatches_1.6.4.zip")
 
 #=====================================================================//
 #  SERVER FILE SETTINGS
@@ -143,13 +143,13 @@ $ENABLE_SERVERSTARTER_MODULE = $true
 # This module requires an older modpack manifest zip to be present, 
 # $LAST_MODPACK_VERSION must be set, and the manifest naming must be consistent.
 # Default: $false
-$ENABLE_CHANGELOG_GENERATOR_MODULE = $true
+$ENABLE_CHANGELOG_GENERATOR_MODULE = $false
 # Path to the ChangelogGenerator's output file
 $CHANGELOG_PATH = "$INSTANCE_ROOT/changelogs/changelog_mods_$MODPACK_VERSION.md"
 
 # Toggle creation of a modlist file on/off
 # Default: $true
-$ENABLE_MODLIST_CREATOR_MODULE = $true
+$ENABLE_MODLIST_CREATOR_MODULE = $false
 # Path to the ModListCreator's output file
 $MODLIST_PATH = "$INSTANCE_ROOT/changelogs/modlist_$MODPACK_VERSION.md"
 
